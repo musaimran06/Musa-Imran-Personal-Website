@@ -1142,8 +1142,47 @@
 
       <!-- Card 1 -->
       <div class="proj-card">
-        <div class="proj-thumb">
-          <span class="proj-thumb-lbl">Amazon FBA</span>
+        <div class="proj-thumb" style="background:#0e0e10;">
+          <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;">
+            <!-- Background glow -->
+            <defs>
+              <radialGradient id="bgGlow" cx="50%" cy="45%" r="55%">
+                <stop offset="0%" stop-color="#c9a86c" stop-opacity="0.10"/>
+                <stop offset="100%" stop-color="#0e0e10" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="boxShade" cx="30%" cy="20%" r="80%">
+                <stop offset="0%" stop-color="#c9a86c" stop-opacity="0.18"/>
+                <stop offset="100%" stop-color="#c9a86c" stop-opacity="0.04"/>
+              </radialGradient>
+            </defs>
+            <rect width="480" height="270" fill="#0e0e10"/>
+            <ellipse cx="240" cy="200" rx="160" ry="40" fill="#c9a86c" opacity="0.05"/>
+            <rect x="240" width="480" height="270" fill="url(#bgGlow)"/>
+
+            <!-- Box body -->
+            <rect x="155" y="95" width="170" height="130" rx="4" fill="url(#boxShade)" stroke="#c9a86c" stroke-opacity="0.25" stroke-width="1.5"/>
+
+            <!-- Box top flaps -->
+            <path d="M155 95 L240 75 L325 95" fill="none" stroke="#c9a86c" stroke-opacity="0.35" stroke-width="1.5" stroke-linejoin="round"/>
+            <line x1="240" y1="75" x2="240" y2="95" stroke="#c9a86c" stroke-opacity="0.25" stroke-width="1"/>
+
+            <!-- Center crease line on box -->
+            <line x1="240" y1="95" x2="240" y2="225" stroke="#c9a86c" stroke-opacity="0.12" stroke-width="1"/>
+
+            <!-- Tape strip across top -->
+            <rect x="210" y="93" width="60" height="8" rx="2" fill="#c9a86c" opacity="0.18"/>
+
+            <!-- Amazon smile arrow -->
+            <path d="M193 168 Q240 192 287 168" fill="none" stroke="#c9a86c" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+            <polygon points="287,162 295,170 284,175" fill="#c9a86c" opacity="0.85"/>
+
+            <!-- Small label lines on box -->
+            <rect x="173" y="120" width="50" height="4" rx="2" fill="#c9a86c" opacity="0.12"/>
+            <rect x="173" y="130" width="36" height="3" rx="1.5" fill="#c9a86c" opacity="0.08"/>
+
+            <!-- FBA text label -->
+            <text x="240" y="252" font-family="'Manrope',sans-serif" font-size="11" font-weight="700" letter-spacing="0.18em" text-anchor="middle" fill="#c9a86c" opacity="0.38" text-transform="uppercase">AMAZON FBA</text>
+          </svg>
         </div>
         <div class="proj-body">
           <div class="proj-meta">
