@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musa Imran — MusaJee</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #09090a;
+      --bg-2:         #0e0e10;
+      --surface:      #131316;
+      --surface-2:    #191920;
+      --border:       #1e1e24;
+      --border-s:     #161619;
+      --accent:       #c9a86c;
+      --accent-dim:   rgba(201,168,108,0.10);
+      --accent-glow:  rgba(201,168,108,0.20);
+      --text:         #f0eeea;
+      --text-2:       #a09c98;
+      --muted:        #4e4c50;
+      --max-w:        1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Film grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.018;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    }
+
+    /* ─────────────────────────────────────
+       NAV
+    ───────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(9,9,10,0.90);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-inner {
+      width: 100%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo img {
+      height: 26px;
+      filter: invert(1);
+      opacity: 0.82;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-link {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.005em;
+      transition: color 0.18s;
+    }
+    .nav-link:hover { color: var(--text); }
+    .nav-cta {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--bg);
+      background: var(--text);
+      text-decoration: none;
+      padding: 0.4rem 1.0625rem;
+      border-radius: 100px;
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+    .nav-cta:active { transform: none; opacity: 1; }
+
+    /* ─────────────────────────────────────
+       HERO
+    ───────────────────────────────────── */
+    .hero-outer {
+      display: grid;
+      grid-template-columns: 55fr 45fr;
+      min-height: 100vh;
+      padding-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 55% 50% at 20% 60%, rgba(201,168,108,0.06) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 28% at 65% 25%, rgba(201,168,108,0.028) 0%, transparent 60%);
+    }
+
+    /* Left */
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem clamp(2rem,3.5vw,3.5rem) 5rem clamp(1.5rem,5.5vw,5rem);
+      position: relative;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      padding: 0.3rem 0.8rem;
+      border-radius: 100px;
+      width: fit-content;
+      margin-bottom: 1.875rem;
+    }
+    .eyebrow-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .hero-intro {
+      font-size: 1rem;
+      color: var(--text-2);
+      font-weight: 400;
+      margin-bottom: 0.3rem;
+      font-family: 'Instrument Sans', sans-serif;
+    }
+    .hero-name {
+      font-size: clamp(3.25rem, 5.8vw, 5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.046em;
+      color: var(--text);
+      margin-bottom: 1.125rem;
+    }
+    .hero-roles {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 0.75rem;
+      margin-bottom: 1.75rem;
+    }
+    .hero-role {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-2);
+      font-family: 'Instrument Sans', sans-serif;
+    }
+    .hero-role-sep {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.82;
+      max-width: 390px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-bottom: 3rem;
+    }
+    .btn-fill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      padding: 0.6875rem 1.375rem;
+      background: var(--text);
+      color: var(--bg);
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 2px 18px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+      transition: opacity 0.18s, transform 0.18s;
+    }
+    .btn-fill:hover { opacity: 0.86; transform: translateY(-1px); }
+    .btn-fill:active { transform: none; }
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 0.6875rem 1.375rem;
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: border-color 0.18s, color 0.18s, transform 0.18s;
+    }
+    .btn-outline:hover { border-color: var(--accent-glow); color: var(--accent); transform: translateY(-1px); }
+    .btn-outline:active { transform: none; }
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px; height: 48px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.18s, color 0.18s;
+    }
+    .social-btn:hover { border-color: var(--accent-glow); color: var(--accent); }
+    .social-btn svg { width: 20px; height: 20px; }
+
+    /* Right */
+    .hero-right {
+      background: var(--surface);
+      border-left: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem;
+    }
+    .hero-dot-grid {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,108,0.11) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.5;
+    }
+    .hero-right-vignette {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 75% 65% at 50% 30%, rgba(201,168,108,0.045) 0%, transparent 65%),
+        radial-gradient(ellipse 100% 40% at 50% 100%, rgba(9,9,10,0.85) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-monogram {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -58%);
+      font-size: clamp(7rem, 15vw, 12rem);
+      font-weight: 800;
+      letter-spacing: -0.065em;
+      color: rgba(201,168,108,0.055);
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+    .hero-status {
+      position: relative;
+      z-index: 2;
+      background: rgba(19,19,22,0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.125rem 1.375rem;
+    }
+    .status-eyebrow {
+      font-size: 0.66rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+    .status-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      background: #00e676;
+      border-radius: 50%;
+      box-shadow: 0 0 7px rgba(0,230,118,0.55);
+      flex-shrink: 0;
+      animation: pulse-dot 2.4s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.78); }
+    }
+    .stack-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+    }
+    .stack-tag {
+      font-size: 0.695rem;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--bg-2);
+      border: 1px solid var(--border-s);
+      padding: 0.16rem 0.6rem;
+      border-radius: 100px;
+    }
+
+    /* ─────────────────────────────────────
+       STATS BAND
+    ───────────────────────────────────── */
+    .stats-band {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-2);
+    }
+    .stats-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-cell {
+      padding: 2.25rem 0 2.25rem 2.5rem;
+      border-right: 1px solid var(--border);
+    }
+    .stat-cell:first-child { padding-left: 0; }
+    .stat-cell:last-child  { border-right: none; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 0.375rem;
+    }
+    .stat-desc {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────
+       SHARED SECTION STYLES
+    ───────────────────────────────────── */
+    .divider { border-top: 1px solid var(--border); }
+    .section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 6.5rem 2.5rem;
+    }
+    .tag {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.875rem;
+    }
+    .h2 {
+      font-size: clamp(1.875rem, 3.2vw, 2.625rem);
+      font-weight: 800;
+      letter-spacing: -0.038em;
+      line-height: 1.08;
+      color: var(--text);
+    }
+    .body-copy {
+      font-size: 0.9375rem;
+      color: var(--text-2);
+      line-height: 1.8;
+    }
+    .two-up {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: end;
+      margin-bottom: 3.25rem;
+    }
+    .two-up .body-copy { max-width: 400px; }
+
+    /* ─────────────────────────────────────
+       ABOUT
+    ───────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5.5rem;
+      align-items: center;
+    }
+    .about-left .h2      { margin-bottom: 1.25rem; }
+    .about-left .body-copy { margin-bottom: 0.875rem; }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.75rem;
+    }
+    .pill {
+      font-size: 0.775rem;
+      font-weight: 500;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.28rem 0.75rem;
+      border-radius: 100px;
+    }
+    .about-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .about-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.375rem 1.75rem;
+      border-bottom: 1px solid var(--border-s);
+    }
+    .about-row:last-child { border-bottom: none; }
+    .about-ico {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .about-ico svg { width: 17px; height: 17px; stroke: var(--accent); fill: none; }
+    .about-row-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .about-row-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────────────────────
+       FOCUS — 4-CARD GRID
+    ───────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .card {
+      background: var(--surface);
+      padding: 2rem 1.75rem;
+      transition: background 0.2s;
+    }
+    .card:hover { background: var(--surface-2); }
+    .card-ico {
+      width: 44px; height: 44px;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-glow);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+    .card-ico svg { width: 19px; height: 19px; stroke: var(--accent); fill: none; }
+    .card-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    /* ─────────────────────────────────────
+       WHAT I DO — SERVICE LIST
+    ───────────────────────────────────── */
+    .svc-list { border-top: 1px solid var(--border); }
+    .svc-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: opacity 0.15s;
+    }
+    .svc-item:hover { opacity: 0.65; }
+    .svc-left {
+      display: flex;
+      align-items: center;
+      gap: 1.375rem;
+    }
+    .svc-n {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--muted);
+      width: 20px;
+      flex-shrink: 0;
+    }
+    .svc-name {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .svc-right {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .svc-tag {
+      font-size: 0.675rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 0.18rem 0.625rem;
+      border-radius: 100px;
+    }
+    .svc-arrow {
+      width: 30px; height: 30px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .svc-arrow svg { width: 11px; height: 11px; stroke: var(--muted); fill: none; }
+
+    /* ─────────────────────────────────────
+       PROJECTS
+    ───────────────────────────────────── */
+    .proj-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.125rem;
+    }
+    .proj-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.22s, transform 0.25s;
+    }
+    .proj-card:hover {
+      border-color: var(--accent-glow);
+      transform: translateY(-2px);
+    }
+    .proj-thumb {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--surface-2);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .proj-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 55% 55% at 50% 50%, rgba(201,168,108,0.055) 0%, transparent 70%);
+    }
+    .proj-thumb-lbl {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+    }
+    .proj-body { padding: 1.375rem 1.5rem; }
+    .proj-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .proj-badge {
+      font-size: 0.675rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.18rem 0.6rem;
+      border-radius: 100px;
+    }
+    .proj-status {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+    .proj-title {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      margin-bottom: 0.5rem;
+    }
+    .proj-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.68;
+    }
+
+    /* ─────────────────────────────────────
+       CONTACT
+    ───────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5.5rem;
+      align-items: center;
+    }
+    .contact-left .h2      { margin-top: 0.875rem; margin-bottom: 1.125rem; }
+    .contact-left .body-copy { max-width: 360px; }
+    .contact-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .c-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--border-s);
+      text-decoration: none;
+      transition: background 0.18s;
+    }
+    .c-method:last-child { border-bottom: none; }
+    .c-method:hover { background: var(--surface-2); }
+    .c-ico {
+      width: 40px; height: 40px;
+      flex-shrink: 0;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .c-ico svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; }
+    .c-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-bottom: 0.12rem;
+    }
+    .c-val {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─────────────────────────────────────
+       FOOTER
+    ───────────────────────────────────── */
+    footer { border-top: 1px solid var(--border); }
+    .footer-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 1.625rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo img {
+      height: 20px;
+      filter: invert(1);
+      opacity: 0.16;
+    }
+    .footer-copy { font-size: 0.775rem; color: var(--muted); }
+
+    /* ─────────────────────────────────────
+       SCROLL ANIMATIONS
+    ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+
+    /* ─────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero-outer { grid-template-columns: 1fr; min-height: auto; padding-bottom: 4rem; }
+      .hero-right  { display: none; }
+      .hero-left   { padding: 4.5rem 1.5rem 3rem; }
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .proj-grid   { grid-template-columns: 1fr; }
+      .two-up      { grid-template-columns: 1fr; gap: 1.25rem; margin-bottom: 2rem; }
+      .stats-inner { grid-template-columns: 1fr; }
+      .stat-cell   { border-right: none; border-bottom: 1px solid var(--border); padding-left: 0; }
+      .stat-cell:last-child { border-bottom: none; }
+      .section     { padding: 4.5rem 1.5rem; }
+      .nav-inner   { padding: 0 1.25rem; }
+      .card-grid   { grid-template-columns: 1fr; }
+      .svc-tag     { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV
+════════════════════════════════════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img src="brand_assets/MusaJee Logo 1.0.png" alt="MusaJee" />
+    </a>
+    <div class="nav-links">
+      <a href="#about"   class="nav-link">About</a>
+      <a href="#focus"   class="nav-link">Focus</a>
+      <a href="#work"    class="nav-link">Work</a>
+      <a href="#contact" class="nav-link">Contact</a>
+      <a href="mailto:55musajee@gmail.com" class="nav-cta">Get in Touch</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<div class="hero-outer">
+  <div class="hero-glow"></div>
+
+  <!-- Left: content -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-dot"></span>
+      McMaster Engineering &nbsp;·&nbsp; Building in Public
+    </div>
+    <p class="hero-intro">Hey, I'm Musa —</p>
+    <h1 class="hero-name">Musa<br/>Imran</h1>
+    <div class="hero-roles">
+      <span class="hero-role">Engineering @ McMaster University</span>
+      <span class="hero-role-sep">·</span>
+      <span class="hero-role">Amazon FBA Ecommerce</span>
+      <span class="hero-role-sep">·</span>
+      <span class="hero-role">AI Systems &amp; Automation</span>
+    </div>
+    <p class="hero-desc">
+      Engineering student building and scaling ecommerce brands with AI, automation, and systems thinking. Long-term focus on online business.
+    </p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-fill">
+        See My Work
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-social">
+      <!-- LinkedIn -->
+      <a href="#" class="social-btn" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
+      </a>
+      <!-- Facebook -->
+      <a href="#" class="social-btn" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <!-- X / Twitter -->
+      <a href="#" class="social-btn" aria-label="X / Twitter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4l16 16M20 4 4 20"/>
+        </svg>
+      </a>
+      <!-- Instagram -->
+      <a href="#" class="social-btn" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Right: decorative panel -->
+  <div class="hero-right">
+    <div class="hero-dot-grid"></div>
+    <div class="hero-right-vignette"></div>
+    <div class="hero-monogram">MJ</div>
+    <div class="hero-status">
+      <p class="status-eyebrow">Current Focus</p>
+      <div class="status-line">
+        <span class="status-dot"></span>
+        Building online income through ecommerce and AI systems
+      </div>
+      <div class="stack-row">
+        <span class="stack-tag">Claude AI</span>
+        <span class="stack-tag">ChatGPT</span>
+        <span class="stack-tag">Gemini</span>
+        <span class="stack-tag">Nano Banana Pro</span>
+        <span class="stack-tag">Helium 10</span>
+      </div>
+      <div class="stack-row" style="margin-top:.4rem;">
+        <span class="stack-tag">n8n</span>
+        <span class="stack-tag">Notion</span>
+      </div>
+      <div class="stack-row" style="margin-top:.4rem;">
+        <span class="stack-tag">Microsoft Office</span>
+        <span class="stack-tag">AutoCAD</span>
+        <span class="stack-tag">Autodesk Inventor</span>
+        <span class="stack-tag">Autodesk Vault</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     STATS BAND
+════════════════════════════════════════ -->
+<div class="stats-band reveal">
+  <div class="stats-inner">
+    <div class="stat-cell">
+      <p class="stat-num">Amazon FBA</p>
+      <p class="stat-desc">Private Label Brand<br/>In Active Development</p>
+    </div>
+    <div class="stat-cell">
+      <p class="stat-num">AI Systems</p>
+      <p class="stat-desc">Automation Workflows<br/>Running &amp; Expanding</p>
+    </div>
+    <div class="stat-cell">
+      <p class="stat-num">Engineering</p>
+      <p class="stat-desc">McMaster University<br/>Full-Time Student</p>
+    </div>
+    <div class="stat-cell">
+      <p class="stat-num">2025</p>
+      <p class="stat-desc">Started Building<br/>Online Businesses</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<div class="divider">
+  <div class="section reveal" id="about">
+    <div class="about-grid">
+
+      <!-- Left text -->
+      <div class="about-left">
+        <span class="tag">About</span>
+        <h2 class="h2">Engineering student.<br/>Founder in the making.</h2>
+        <p class="body-copy" style="margin-bottom:.875rem;">
+          I'm a McMaster Engineering student obsessed with building things that scale. My focus is Amazon FBA private label — finding products, building brands, and running operations end-to-end.
+        </p>
+        <p class="body-copy">
+          I use AI and automation to move faster and think in systems. Every project is a deliberate step toward building a real, long-term online business.
+        </p>
+        <div class="pill-row">
+          <span class="pill">McMaster Engineering</span>
+          <span class="pill">Amazon FBA</span>
+          <span class="pill">AI Tools</span>
+          <span class="pill">Automation</span>
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div class="about-panel">
+        <div class="about-row">
+          <div class="about-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <div>
+            <p class="about-row-title">Amazon FBA Private Label</p>
+            <p class="about-row-desc">Building and launching a private label brand on Amazon — from product research to brand creation and profitable scale.</p>
+          </div>
+        </div>
+        <div class="about-row">
+          <div class="about-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.7-6.3-2.1 2.1M8.1 15.9l-2.1 2.1m0-11.4 2.1 2.1M15.9 15.9l2.1 2.1"/>
+            </svg>
+          </div>
+          <div>
+            <p class="about-row-title">AI & Automation</p>
+            <p class="about-row-desc">Using AI tools and automation workflows to research smarter, operate leaner, and scale without adding headcount.</p>
+          </div>
+        </div>
+        <div class="about-row">
+          <div class="about-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20h20M6 20V10l6-6 6 6v10"/>
+              <path d="M10 20v-5h4v5"/>
+            </svg>
+          </div>
+          <div>
+            <p class="about-row-title">Building in Public</p>
+            <p class="about-row-desc">Documenting every decision, experiment, and lesson behind building a real ecommerce business from zero.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FOCUS — 4-CARD GRID
+════════════════════════════════════════ -->
+<div class="divider">
+  <div class="section reveal" id="focus">
+    <div class="two-up">
+      <div>
+        <span class="tag">Focus Areas</span>
+        <h2 class="h2">What I'm<br/>working on</h2>
+      </div>
+      <p class="body-copy">
+        Every focus area connects back to one goal: building scalable online businesses powered by smart systems and AI.
+      </p>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-ico">
+          <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <p class="card-title">Amazon FBA Private Label</p>
+        <p class="card-desc">Operating a private label Amazon FBA brand with a focus on product research, listing optimization, CTR, conversion rate, PPC performance, keyword strategy, and scalable growth.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">
+          <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 2v3m0 14v3M2 12h3m14 0h3m-3.7-6.3-2.1 2.1M8.1 15.9l-2.1 2.1m0-11.4 2.1 2.1M15.9 15.9l2.1 2.1"/>
+          </svg>
+        </div>
+        <p class="card-title">AI Automation</p>
+        <p class="card-desc">Building AI-powered workflows to automate research, operations, and business decisions at scale.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">
+          <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <p class="card-title">Systems & Workflows</p>
+        <p class="card-desc">Designing lean operating systems — SOPs, dashboards, and tool stacks that let the business run efficiently.</p>
+      </div>
+      <div class="card">
+        <div class="card-ico">
+          <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6"  y1="20" x2="6"  y2="14"/>
+          </svg>
+        </div>
+        <p class="card-title">Product Research</p>
+        <p class="card-desc">Data-driven product validation — analyzing demand, competition, and unit economics before committing capital.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     WHAT I DO — SERVICE LIST
+════════════════════════════════════════ -->
+<div class="divider">
+  <div class="section reveal">
+    <div class="two-up">
+      <div>
+        <span class="tag">What I Do</span>
+        <h2 class="h2">Building ecommerce<br/>brands from scratch</h2>
+      </div>
+      <p class="body-copy">
+        From product research to brand launch, I'm executing every layer of the Amazon FBA model — with AI handling the repetitive work.
+      </p>
+    </div>
+    <div class="svc-list">
+      <div class="svc-item">
+        <div class="svc-left">
+          <span class="svc-n">01</span>
+          <span class="svc-name">Amazon FBA Private Label</span>
+        </div>
+        <div class="svc-right">
+          <span class="svc-tag">Ecommerce</span>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-left">
+          <span class="svc-n">02</span>
+          <span class="svc-name">AI-Powered Business Automation</span>
+        </div>
+        <div class="svc-right">
+          <span class="svc-tag">AI + Tools</span>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-left">
+          <span class="svc-n">03</span>
+          <span class="svc-name">Systems Design & Operations</span>
+        </div>
+        <div class="svc-right">
+          <span class="svc-tag">Workflows</span>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-left">
+          <span class="svc-n">04</span>
+          <span class="svc-name">Product Research & Validation</span>
+        </div>
+        <div class="svc-right">
+          <span class="svc-tag">Data</span>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="svc-item">
+        <div class="svc-left">
+          <span class="svc-n">05</span>
+          <span class="svc-name">Brand Building & Positioning</span>
+        </div>
+        <div class="svc-right">
+          <span class="svc-tag">Brand</span>
+          <div class="svc-arrow">
+            <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     PROJECTS
+════════════════════════════════════════ -->
+<div class="divider">
+  <div class="section reveal" id="work">
+    <div class="two-up">
+      <div>
+        <span class="tag">Work</span>
+        <h2 class="h2">Projects &<br/>experiments</h2>
+      </div>
+      <p class="body-copy">
+        Real work in progress. Each project is a deliberate step toward building a scalable online business.
+      </p>
+    </div>
+    <div class="proj-grid">
+
+      <!-- Card 1 -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          <span class="proj-thumb-lbl">Amazon FBA</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-badge">Ecommerce</span>
+            <span class="proj-status">· In Progress</span>
+          </div>
+          <p class="proj-title">Amazon FBA Private Label Business</p>
+          <p class="proj-desc" style="margin-bottom:.875rem;">Building and scaling a private label ecommerce brand in the medical niche, with a focus on systems, supplier networks, and data-driven optimization.</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.45rem;">
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Built and launched a private label ecommerce brand in the medical niche from scratch</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Sourced and negotiated with international suppliers, primarily in China, handling manufacturing and logistics</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Identified high-potential products through data-driven research (demand, competition, and profit margins)</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Continuously optimized listings and strategy using performance metrics and market feedback</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Focused on scaling and systemizing operations to improve efficiency and long-term growth</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          <span class="proj-thumb-lbl">AI Tools</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-badge">Automation</span>
+            <span class="proj-status">· Active</span>
+          </div>
+          <p class="proj-title">AI Automation</p>
+          <p class="proj-desc" style="margin-bottom:.875rem;">Building and deploying AI-powered automation systems using Claude, n8n, and modern tooling — reducing manual work and improving how decisions get made across business operations.</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.45rem;">
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Built AI-driven workflows using Claude and n8n to automate business research, operations, and repetitive tasks</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Designed systems to streamline workflows, reduce manual effort, and improve decision-making efficiency</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Developed lightweight web tools and interfaces to connect and deploy AI-powered processes</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Experienced with prompt engineering and leveraging multiple AI tools (Claude, ChatGPT, Gemini) for problem-solving and optimization</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Focused on building scalable automation systems to improve efficiency and long-term output</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 3 — Co-op -->
+      <div class="proj-card">
+        <div class="proj-thumb">
+          <span class="proj-thumb-lbl">Engineering</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-badge">Co-op</span>
+            <span class="proj-status">· Completed</span>
+          </div>
+          <p class="proj-title">Mechanical Engineering Co-op</p>
+          <p class="proj-desc" style="margin-bottom:.875rem;">Commercial kitchen equipment manufacturer. Worked across design, documentation, quality, and R&amp;D safety.</p>
+          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.45rem;">
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>3D modeling &amp; technical drawings in Autodesk Inventor, AutoCAD &amp; Vault</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Installation, operation &amp; maintenance manuals for steamers, kettles, mixers</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Developed &amp; finalized Final Test Procedures (FTP) with version control</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Implemented LOTO systems &amp; power monitoring indicators in R&amp;D lab</li>
+            <li style="font-size:.775rem;color:var(--muted);display:flex;gap:.5rem;align-items:flex-start;"><span style="color:var(--accent);flex-shrink:0;margin-top:.05rem;">—</span>Dimensional &amp; visual inspection of supplier parts against engineering drawings</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 4 — placeholder -->
+      <div class="proj-card" style="opacity:.45; pointer-events:none;">
+        <div class="proj-thumb" style="background:var(--bg-2);">
+          <span class="proj-thumb-lbl" style="color:var(--border);">Next</span>
+        </div>
+        <div class="proj-body">
+          <div class="proj-meta">
+            <span class="proj-badge" style="color:var(--muted);background:var(--surface-2);">Upcoming</span>
+            <span class="proj-status">· Planned</span>
+          </div>
+          <p class="proj-title" style="color:var(--text-2);">Next Project</p>
+          <p class="proj-desc">More coming as the ecommerce brand and AI stack grow. Follow along to see what's next.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+════════════════════════════════════════ -->
+<div class="divider">
+  <div class="section reveal" id="contact">
+    <div class="contact-grid">
+      <div class="contact-left">
+        <span class="tag">Contact</span>
+        <h2 class="h2">Let's connect<br/>and build.</h2>
+        <p class="body-copy">
+          Open to conversations about ecommerce, AI tools, projects, or just sharing ideas. Reach out anytime.
+        </p>
+      </div>
+      <div class="contact-panel">
+        <!-- Email -->
+        <a href="mailto:55musajee@gmail.com" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">Email</p>
+            <p class="c-val">55musajee@gmail.com</p>
+          </div>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/musa-imran-aa2027282/" target="_blank" rel="noopener" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">LinkedIn</p>
+            <p class="c-val">Musa Imran</p>
+          </div>
+        </a>
+        <!-- Facebook -->
+        <a href="https://www.linkedin.com/in/musa-imran-aa2027282/" target="_blank" rel="noopener" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">Facebook</p>
+            <p class="c-val">Musa Imran</p>
+          </div>
+        </a>
+        <!-- X / Twitter -->
+        <a href="https://www.linkedin.com/in/musa-imran-aa2027282/" target="_blank" rel="noopener" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4l16 16M20 4 4 20"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">X / Twitter</p>
+            <p class="c-val">@musaimran06</p>
+          </div>
+        </a>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/musaimran06?igsh=MTdxeDNjeXlubWowMA%3D%3D&utm_source=qr" target="_blank" rel="noopener" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">Instagram</p>
+            <p class="c-val">@musaimran06</p>
+          </div>
+        </a>
+        <!-- GitHub -->
+        <a href="https://github.com/musaimran06" target="_blank" rel="noopener" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">GitHub</p>
+            <p class="c-val">@musaimran06</p>
+          </div>
+        </a>
+        <!-- WeChat -->
+        <a href="#" class="c-method">
+          <div class="c-ico">
+            <svg stroke-width="1.75" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 10a6.5 6.5 0 1 0 0-7A8.5 8.5 0 1 0 20 17l2 2-3-1a8.5 8.5 0 0 1-10-8z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="c-label">WeChat</p>
+            <p class="c-val">@musaimran06</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="brand_assets/MusaJee Logo 1.0.png" alt="MusaJee" />
+    </div>
+    <p class="footer-copy">&copy; 2026 Musa Imran</p>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+    { threshold: 0.06, rootMargin: '0px 0px 80px 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
