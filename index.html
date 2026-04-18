@@ -280,23 +280,24 @@
     }
     .hero-monogram {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -58%);
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       text-decoration: none;
+      padding: 3rem;
     }
     .hero-monogram img {
-      width: clamp(160px, 22vw, 260px);
-      filter: sepia(1) saturate(1.4) hue-rotate(5deg) brightness(0.62) opacity(0.38);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: sepia(1) saturate(1.4) hue-rotate(5deg) brightness(0.58) opacity(0.32);
       transition: filter 0.3s, opacity 0.3s;
       user-select: none;
       pointer-events: auto;
     }
     .hero-monogram:hover img {
-      filter: sepia(1) saturate(1.6) hue-rotate(5deg) brightness(0.75) opacity(0.6);
+      filter: sepia(1) saturate(1.6) hue-rotate(5deg) brightness(0.72) opacity(0.52);
     }
     .hero-status {
       position: relative;
