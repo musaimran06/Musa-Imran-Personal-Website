@@ -283,13 +283,20 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -58%);
-      font-size: clamp(7rem, 15vw, 12rem);
-      font-weight: 800;
-      letter-spacing: -0.065em;
-      color: rgba(201,168,108,0.055);
-      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .hero-monogram img {
+      width: clamp(160px, 22vw, 260px);
+      filter: sepia(1) saturate(1.4) hue-rotate(5deg) brightness(0.62) opacity(0.38);
+      transition: filter 0.3s, opacity 0.3s;
       user-select: none;
-      line-height: 1;
+      pointer-events: auto;
+    }
+    .hero-monogram:hover img {
+      filter: sepia(1) saturate(1.6) hue-rotate(5deg) brightness(0.75) opacity(0.6);
     }
     .hero-status {
       position: relative;
@@ -842,7 +849,9 @@
   <div class="hero-right">
     <div class="hero-dot-grid"></div>
     <div class="hero-right-vignette"></div>
-    <div class="hero-monogram">MJ</div>
+    <a href="https://www.musajee.com" target="_blank" rel="noopener" class="hero-monogram">
+      <img src="brand_assets/MusaJee Logo 1.0.png" alt="MusaJee" />
+    </a>
     <div class="hero-status">
       <p class="status-eyebrow">Current Focus</p>
       <div class="status-line">
